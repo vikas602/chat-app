@@ -1,15 +1,15 @@
-import {Component, Suspense, lazy} from 'react';
+import { Suspense, lazy} from 'react';
 import {Navigate, useRoutes} from 'react-router-dom';
-import {Dashboard} from '../layouts/dashboard'
+import DashboardLayout from '../layouts/dashboard'
 
 
 import React from 'react'
-import { element } from 'prop-types';
-import {DEFAULT_PATH} from "../"
+
+import {DEFAULT_PATH} from "../config"
 import LoadingScreen from '../components/LoadingScreen'
 
-const Loadable= (component)=>(props)=>{
-  retrun(
+const Loadable= (Component)=>(props)=>{
+  return(
     <Suspense fallback={<LoadingScreen/>}>
       <Component {...props}/>
     </Suspense>
@@ -21,7 +21,7 @@ export default function Router() {
   return useRoutes([
    {
     path:"/",
-    element: <Dashboard />,
+    element: <DashboardLayout />,
     children: [
       {element: <Navigate to={DEFAULT_PATH} replace/>, index:true},
       {path: "app", element:<GeneralApp/>},
@@ -31,12 +31,12 @@ export default function Router() {
     
    },
    {path:'*', element:< Page404/>}
-
-   
-
-
-  ])
-  
+  ]);
 }
+
+const GeneralApp = Loadable(
+  lazy(() => import("../pages/dashboard/Generalapp")),
+);
+const Page404 = Loadable(lazy(() => import("../pages/page404")));
 
 
