@@ -1,0 +1,19 @@
+.searchIcon{
+    display: flex;
+    justify-content: center;
+}
+.searchInput{
+    height: 30px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    margin-left: 18px;
+
+}
+.searchInput:focus{
+    outline: none;
+}
+.archiveIcon{
+    color: blueviolet;
+    font-size: 20px;
+}

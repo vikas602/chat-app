@@ -1,10 +1,12 @@
 import React from 'react'
+import Chat from './Chat'
 
 function Generalapp() {
   return (
-    <div>
-      
-    </div>
+    <>
+    
+      <Chat />
+    </>
   )
 }
 

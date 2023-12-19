@@ -54,54 +54,57 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 const DashboardLayout = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
-  const {onToggleMode} = useSettings();
- 
-  
+  const { onToggleMode } = useSettings();
+
+
 
   return (
     <>
-      <Box p={2} sx={{
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
-        height: "100vh", width: 100,
-      }}>
+      <Stack direction="row">
+        <Box p={2} sx={{
+          backgroundColor: theme.palette.background.paper,
+          boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
+          height: "100vh", width: 100,
+        }}>
 
-        <Stack direction="column" alignItems="center" justifyContent="space-between" sx={{height:"100%"}} spacing={4}>
-          <Stack alignItems="center" spacing={3}>
-            <Box sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "purple",
-              height: 64,
-              width: 64,
-              borderRadius: 1.5
-            }}><IoChatbox className="mainIcon" /></Box>
-            <Stack spacing={3} sx={{ widht: "max-content" }} direction="column" alignItems="center">
-              <div onClick={() => { setSelected(0) }} className={selected == 0 ? "activeIcon" : "icon"}>
-                <AiFillMessage />
-              </div>
-              <div onClick={() => { setSelected(1) }} className={selected == 1 ? "activeIcon" : "icon"}>
-                <RiGroupFill />
-              </div>
-              <div onClick={() => { setSelected(2) }} className={selected == 2 ? "activeIcon" : "icon"}>
-                <IoCall />
-              </div>
-              <Divider sx={{ width: "48px" }} />
-              <div onClick={() => { setSelected(3) }} className={selected == 3 ? "activeIcon" : "icon"}>
-                <IoIosSettings />
-              </div>
+          <Stack direction="column" alignItems="center" justifyContent="space-between" sx={{ height: "100%" }} spacing={4}>
+            <Stack alignItems="center" spacing={3}>
+              <Box sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "purple",
+                height: 64,
+                width: 64,
+                borderRadius: 1.5
+              }}><IoChatbox className="mainIcon" /></Box>
+              <Stack spacing={3} sx={{ widht: "max-content" }} direction="column" alignItems="center">
+                <div onClick={() => { setSelected(0) }} className={selected == 0 ? "activeIcon" : "icon"}>
+                  <AiFillMessage />
+                </div>
+                <div onClick={() => { setSelected(1) }} className={selected == 1 ? "activeIcon" : "icon"}>
+                  <RiGroupFill />
+                </div>
+                <div onClick={() => { setSelected(2) }} className={selected == 2 ? "activeIcon" : "icon"}>
+                  <IoCall />
+                </div>
+                <Divider sx={{ width: "48px" }} />
+                <div onClick={() => { setSelected(3) }} className={selected == 3 ? "activeIcon" : "icon"}>
+                  <IoIosSettings />
+                </div>
+              </Stack>
+            </Stack >
+            <Stack sx={{ width: "100%" }} alignItems="center" >
+              change mode
+              <AntSwitch className="switch" onChange={() => { onToggleMode(); }} defaultChecked />
             </Stack>
-          </Stack >
-          <Stack  sx={{ width: "100%" }} alignItems="center" >
-            change mode
-            <AntSwitch className="switch" onChange={()=>{onToggleMode();}} defaultChecked/>
-          </Stack> 
-        </Stack>
+          </Stack>
 
 
-      </Box>
-      <Outlet />
+        </Box>
+        <Outlet />
+      </Stack>
+
     </>
   );
 };
