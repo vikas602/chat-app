@@ -49,6 +49,7 @@ function ChatComponent({ id, name, img, msg, time, unread, online }) {
                         <Typography variant='subtitle2'>
                             {name}
                         </Typography>
+                        
                         <Typography variant='caption'>
                             {msg}
                         </Typography>

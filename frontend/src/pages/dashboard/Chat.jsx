@@ -31,7 +31,7 @@ function Chat() {
         <Stack >
           <Box sx={{ width: "100%", borderRadius: "8px", height: "40px", backgroundColor: theme.palette.mode=='light'? "white": theme.palette.background.default, boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)" }} px={2} display={'flex'} alignItems={'center'}  >
             <FaMagnifyingGlass className='searchIcon' />
-            <input type='text' className='searchInput' placeholder='Search...' background-color={theme.palette.mode=='light'? "white": theme.palette.background.default } />
+            <input type='text' className='searchInput' placeholder='Search...' style={{backgroundColor: theme.palette.mode=='light'? "white": theme.palette.background.default}} />
           </Box>
         </Stack>
         <Stack spacing={1.5} sx={{height: "80%" }}>
@@ -41,7 +41,6 @@ function Chat() {
           </Stack>
           <Divider />
           <Stack spacing={2} sx={{ flexGrow: 1, overflowY: 'scroll', overflowX:'hidden',  height: "100%" }}>
-            
               <Stack spacing={2}>
                 <Stack direction={'row'} alignItems={'center'} spacing={1.2}>
                   <TbPinnedFilled />
