@@ -1,6 +1,6 @@
-import { Avatar, Box, Stack, Badge, Typography } from '@mui/material'
+import { Avatar, Box, Stack, Badge, Typography, Hidden } from '@mui/material'
 import React from 'react';
-import { styled ,useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { faker } from '@faker-js/faker';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -35,7 +35,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function ChatComponent({ id, name, img, msg, time, unread, online }) {
     const theme = useTheme()
     return (
-        <Box sx={{ height: "64px", backgroundColor: theme.palette.mode=='light'? "white": theme.palette.background.default, width: "100%", borderRadius: "15px", boxShadow: "0px 10px 15px -9px rgba(0,0,0,0.1)" }} p={1}>
+        <Box sx={{ height: "64px", backgroundColor: theme.palette.mode == 'light' ? "white" : theme.palette.background.default, width: "100%", borderRadius: "15px", boxShadow: "0px 10px 15px -9px rgba(0,0,0,0.1)" }} p={1}>
             <Stack direction={'row'} spacing={2} alignItems={'center'} sx={{ width: "100%" }} justifyContent={'space-between'}>
                 <Stack direction={'row'} spacing={2}>
                     {online ? <StyledBadge
@@ -49,10 +49,11 @@ function ChatComponent({ id, name, img, msg, time, unread, online }) {
                         <Typography variant='subtitle2'>
                             {name}
                         </Typography>
-                        
-                        <Typography variant='caption'>
-                            {msg}
-                        </Typography>
+                        <Box width={'150px'} sx={{ overflow:'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} p={'0px'} spacing={'0px'}>
+                            <Typography variant='caption'>
+                                {msg}
+                            </Typography>
+                        </Box>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} alignItems={'center'} >
