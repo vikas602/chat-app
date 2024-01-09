@@ -55,15 +55,12 @@ function Header() {
                 }}
                 variant="dot">
                 <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} />
-
               </StyledBadge>
-
             </Box>
             <Stack>
               <Typography>{faker.name.fullName()}</Typography>
               <Typography variant='caption'>Online</Typography>
             </Stack>
-
           </Stack>
           <Stack direction={'row'} spacing={2} >
             <IconButton>
@@ -80,7 +77,6 @@ function Header() {
               <PiCaretDownBold />
             </IconButton>
           </Stack>
-
         </Stack>
       </Box>
   )

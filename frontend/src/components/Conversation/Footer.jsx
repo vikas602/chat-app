@@ -8,7 +8,7 @@ import { FaPaperPlane } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
 import { TiCamera } from "react-icons/ti";
 import { FaNoteSticky } from "react-icons/fa6";
-
+import Tooltip from '@mui/material/Tooltip';
 import { FaImage } from "react-icons/fa6";
 import Picker from '@emoji-mart/react';
 import { FaLocationDot } from "react-icons/fa6";
@@ -20,39 +20,55 @@ const StyledInput = styled(TextField)(({ theme }) => ({
   }
 }));
 const Attachment = () => {
-  const theme= useTheme();
-  return (<Box sx={{ width: '350px', height: 'auto', position: 'fixed', backgroundColor:  theme.palette.mode == 'light' ? "#F8FAFF" : 'black', borderRadius: '20px', boxShadow:"0px 0px 2px rgba(0, 0, 0, 0.25)"}} p={3}>
-    <Stack direction={'row'}  flexWrap={'wrap'} gap={3}>
+  const theme = useTheme();
+  return (<Box sx={{ width: '350px', height: 'auto', position: 'fixed', backgroundColor: theme.palette.mode == 'light' ? "#F8FAFF" : 'black', borderRadius: '20px', boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)" }} p={3}>
+    <Stack direction={'row'} flexWrap={'wrap'} gap={3}>
+      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'aqua' }}>
+        <Tooltip title="Camera">
+          <IconButton>
+            <TiCamera style={{ color: 'white', fontSize: '26px' }} />
+          </IconButton>
+        </Tooltip>
+      </Box>
 
-      <Box sx={{borderRadius:'100%', display:'flex', alignItems:'center', justifyContent:'center', width:'55px', height:'55px', backgroundColor:'rgb(16, 246, 135)'}}>
-        <IconButton>
-          <IoIosDocument style={{color: 'white'}}/>
-        </IconButton>
+      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'purple' }}>
+        <Tooltip title="Image/Video">
+          <IconButton>
+            <FaImage style={{ color: 'white', fontSize: '20px' }} />
+          </IconButton>
+        </Tooltip>
       </Box>
-      <Box sx={{borderRadius:'100%', display:'flex', alignItems:'center', justifyContent:'center', width:'55px', height:'55px', backgroundColor:'purple'}}>
-        <IconButton>
-          <FaImage style={{color: 'white', fontSize:'20px'}}/>
-        </IconButton>
+
+      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'rgb(16, 246, 135)' }}>
+        <Tooltip title="Document" >
+          <IconButton>
+            <IoIosDocument style={{ color: 'white' }} />
+          </IconButton>
+        </Tooltip>
       </Box>
-      <Box sx={{borderRadius:'100%', display:'flex', alignItems:'center', justifyContent:'center', width:'55px', height:'55px', backgroundColor:'red'}}>
-        <IconButton>
-          <FaLocationDot style={{color: 'white', fontSize:'20px'}}/>
-        </IconButton>
+
+      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'red' }}>
+        <Tooltip title='Location'>
+          <IconButton>
+            <FaLocationDot style={{ color: 'white', fontSize: '20px' }} />
+          </IconButton>
+        </Tooltip>
       </Box>
-      <Box sx={{borderRadius:'100%', display:'flex', alignItems:'center', justifyContent:'center', width:'55px', height:'55px', backgroundColor:'orange'}}>
-        <IconButton>
-          <IoPerson style={{color: 'white', fontSize:'20px'}}/>
-        </IconButton>
+      
+      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'orange' }}>
+        <Tooltip title="Contact">
+          <IconButton>
+            <IoPerson style={{ color: 'white', fontSize: '20px' }} />
+          </IconButton>
+        </Tooltip>
       </Box>
-      <Box sx={{borderRadius:'100%', display:'flex', alignItems:'center', justifyContent:'center', width:'55px', height:'55px', backgroundColor:'aqua'}}>
-        <IconButton>
-          <TiCamera style={{color: 'white', fontSize:'26px'}}/>
-        </IconButton>
-      </Box>
-      <Box sx={{borderRadius:'100%', display:'flex', alignItems:'center', justifyContent:'center', width:'55px', height:'55px', backgroundColor:'rgb(15, 201, 15)'}}>
-        <IconButton>
-          <FaNoteSticky  style={{color: 'white', fontSize:'20px'}}/>
-        </IconButton>
+
+      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'rgb(15, 201, 15)' }}>
+        <Tooltip title="Sticky Note">
+          <IconButton>
+            <FaNoteSticky style={{ color: 'white', fontSize: '20px' }} />
+          </IconButton>
+        </Tooltip>
       </Box>
     </Stack>
   </Box>)
@@ -86,13 +102,13 @@ const Footer = () => {
               disableUnderline: true,
               startAdornment: (<InputAdornment>
                 <IconButton onClick={() => { setopenAttachment((prev) => !prev) }}>
-                  <GrAttachment style={{ color: openAttachment? theme.palette.primary.main: ' #919EAB'}} />
+                  <GrAttachment style={{ color: openAttachment ? theme.palette.primary.main : ' #919EAB' }} />
                 </IconButton>
               </InputAdornment>),
               endAdornment: (
                 <InputAdornment>
                   <IconButton onClick={() => { setopenPicker((prev) => !prev) }}>
-                    <FaRegSmile style={{ color: openPicker? theme.palette.primary.main: ' #919EAB'}} />
+                    <FaRegSmile style={{ color: openPicker ? theme.palette.primary.main : ' #919EAB' }} />
                   </IconButton>
                 </InputAdornment>
               )

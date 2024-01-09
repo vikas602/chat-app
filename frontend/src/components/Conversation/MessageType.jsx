@@ -5,8 +5,9 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import React from 'react';
+import {Message_options} from '../../data';
 
-const DocMsg = ({el})=>{
+const DocMsg = ({ el }) => {
     const theme = useTheme();
     return <Stack direction={'row'} justifyContent={el.incoming ? "start" : "end"}>
         <Box
@@ -18,19 +19,19 @@ const DocMsg = ({el})=>{
                 boxShadow: "0px 10px 15px -6px rgba(0,0,0,0.1)",
                 width: "max-content"
             }}>
-                <Stack spacing={2}>
-                    <Stack direction={'row'} p={1} spacing={3} alignItems={'center'} sx={{background: theme.palette.background.paper, borderRadius:'10px'}}>
-                        <Image width={55}/>
-                        <Typography variant='caption'>Abstact.img</Typography>
-                        <IconButton>
-                            <DownloadSimple />
-                        </IconButton>
-                    </Stack>
-                    <Typography variant='body2'  sx={{color: el.incoming? theme.palette.text:"#fff"}}>{el.message}</Typography>
+            <Stack spacing={2}>
+                <Stack direction={'row'} p={1} spacing={3} alignItems={'center'} sx={{ background: theme.palette.background.paper, borderRadius: '10px' }}>
+                    <Image width={55} />
+                    <Typography variant='caption'>Abstact.img</Typography>
+                    <IconButton>
+                        <DownloadSimple />
+                    </IconButton>
                 </Stack>
-            </Box>
-            
-        </Stack>
+                <Typography variant='body2' sx={{ color: el.incoming ? theme.palette.text : "#fff" }}>{el.message}</Typography>
+            </Stack>
+        </Box>
+        <Option />
+    </Stack>
 }
 const LinkMsg = ({ el }) => {
     const theme = useTheme();
@@ -49,12 +50,13 @@ const LinkMsg = ({ el }) => {
                     <img src={el.preview} alt={el.message} style={{ maxHeight: 210, borderRadius: "10px" }} />
                     <Stack spacing={1}>
                         <Typography variant='subtitle2'>hello this is the link</Typography>
-                        <Typography variant='subtitle2' component={Link} sx={{color:theme.palette.primary.main}} to="//https://www.youtube.com">www.youtube.com</Typography>
+                        <Typography variant='subtitle2' component={Link} sx={{ color: theme.palette.primary.main }} to="//https://www.youtube.com">www.youtube.com</Typography>
                     </Stack>
-                    <Typography variant='body2' sx={{color: el.incoming? theme.palette.text:"#fff"}}>{el.message}</Typography>
+                    <Typography variant='body2' sx={{ color: el.incoming ? theme.palette.text : "#fff" }}>{el.message}</Typography>
                 </Stack>
             </Stack>
         </Box>
+        <Option />
     </Stack>
 }
 const ReplyMsg = ({ el }) => {
@@ -85,6 +87,7 @@ const ReplyMsg = ({ el }) => {
             </Stack>
 
         </Box >
+        <Option />
     </Stack >
 }
 const MediaMsg = ({ el }) => {
@@ -106,6 +109,7 @@ const MediaMsg = ({ el }) => {
                 </Typography>
             </Stack>
         </Box>
+        <Option />
     </Stack>
 }
 
@@ -126,6 +130,7 @@ const TextMsg = ({ el }) => {
             </Typography>
 
         </Box>
+        <Option />
     </Stack>
 }
 const Timeline = ({ el }) => {
@@ -138,39 +143,40 @@ const Timeline = ({ el }) => {
 
     </Stack>
 }
-const Option = ()=>{
+const Option = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
-    return(
+    return (
         <>
-       <DotsThreeVertical id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick} 
-            size={20}/>
-     <div>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu>
-    </div>
-            
+            <DotsThreeVertical id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+                size={20} />
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+            >
+                <Stack spacing={1} px={1}>
+                    {Message_options.map((el) => (
+                        <MenuItem onClick={handleClick}>{el.title}</MenuItem>)
+                    )}
+                </Stack>
+            </Menu>
+
+
         </>
     )
 }
