@@ -7,6 +7,8 @@ import { FaVideo } from "react-icons/fa6";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { PiCaretDownBold } from "react-icons/pi";
 import "./conversation.scss"
+import { useDispatch } from 'react-redux';
+import { ToggleSidebar } from '../../redux/slices/app';
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
       backgroundColor: '#44b700',
@@ -37,6 +39,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }));
 function Header() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   return (
     <Box sx={{
         height: 70,
@@ -45,7 +48,7 @@ function Header() {
         boxShadow: "0px 10px 15px -6px rgba(0,0,0,0.1)"
       }} p={2}>
         <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'} sx={{ width: '100%', height: "100%" }}>
-          <Stack direction={'row'} spacing={2} >
+          <Stack direction={'row'} spacing={2} onClick={()=>{ dispatch(ToggleSidebar())}} >
             <Box>
               <StyledBadge
                 overlap="circular"

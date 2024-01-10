@@ -3,9 +3,12 @@ import Chat from './Chat'
 import { Box, Stack } from '@mui/material'
 import { useTheme} from '@mui/material/styles'
 import Conversation from '../../components/Conversation'
+import Contact from '../../components/Conversation/Contact'
+import {useSelector} from 'react-redux'
 
 function Generalapp() {
   const theme = useTheme()
+  const {sidebar} =useSelector((store)=>store.app);
   return (
     <>
       <Stack direction={'row'} width={'100%'}>
@@ -18,6 +21,7 @@ function Generalapp() {
           <Conversation />
 
         </Box>
+        {sidebar.open && <Contact />}
       </Stack>
 
     </>

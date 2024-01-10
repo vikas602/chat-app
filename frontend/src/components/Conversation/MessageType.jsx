@@ -83,9 +83,7 @@ const ReplyMsg = ({ el }) => {
                         </Typography>
                     </Box>
                 </Stack>
-
             </Stack>
-
         </Box >
         <Option />
     </Stack >
@@ -128,7 +126,6 @@ const TextMsg = ({ el }) => {
             <Typography variant="body" fontSize={'14px'} color={el.incoming ? theme.palette.text : "#fff"}>
                 {el.message}
             </Typography>
-
         </Box>
         <Option />
     </Stack>
