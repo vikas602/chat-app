@@ -43,8 +43,8 @@ function ChatComponent({ id, name, img, msg, time, unread, online }) {
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                         variant="dot"
                     >
-                        <Avatar alt="Remy Sharp" src={faker.image.avatar()} />
-                    </StyledBadge> : <Avatar alt="Remy Sharp" src={faker.image.avatar()} />}
+                        <Avatar alt="Remy Sharp" src={img} />
+                    </StyledBadge> : <Avatar alt="Remy Sharp" src={img} />}
                     <Stack spacing={0.3}>
                         <Typography variant='subtitle2'>
                             {name}

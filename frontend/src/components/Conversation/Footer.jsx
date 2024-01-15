@@ -31,7 +31,7 @@ const Attachment = () => {
         </Tooltip>
       </Box>
 
-      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'purple' }}>
+      <Box sx={{ borderRadius: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '55px', height: '55px', backgroundColor: 'rgb(179, 0, 255);' }}>
         <Tooltip title="Image/Video">
           <IconButton>
             <FaImage style={{ color: 'white', fontSize: '20px' }} />

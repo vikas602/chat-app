@@ -13,7 +13,6 @@ function Message() {
                 switch(el.type){
                     case "divider":
                         return <Timeline el= {el}/>
-                        
                     case "msg":
                         switch(el.subtype){
                             case 'img':

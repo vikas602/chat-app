@@ -1,4 +1,7 @@
 import { faker } from "@faker-js/faker";
+import profile from "../assets/Images/profile2.jpg";
+import profile3 from "../assets/Images/profile3.webp";
+import profile2 from "../assets/Images/422226.jpg"
 import {
   ChatCircleDots,
   Gear,
@@ -47,13 +50,43 @@ const Nav_Setting = [
 ];
 
 const ChatList = [
+  // {
+  //   id: 0,
+  //   img: profile3,
+  //   name: "Kavita Sharma",
+  //   msg: "Missing you Vikas baby",
+  //   time: "9:36",
+  //   unread: 4,
+  //   pinned: true,
+  //   online: true,
+  // },
+  // {
+  //   id: 0,
+  //   img: profile2,
+  //   name: "Soni Sharma",
+  //   msg: "Please call back Vikas",
+  //   time: "9:36",
+  //   unread: 8,
+  //   pinned: true,
+  //   online: false,
+  // },
+  // {
+  //   id: 0,
+  //   img: profile,
+  //   name: "Shweta Sharma",
+  //   msg: "Kal tum kis ladki ke sath the??",
+  //   time: "9:36",
+  //   unread: 9,
+  //   pinned: true,
+  //   online: true,
+  // },
   {
     id: 0,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
     msg: faker.music.songName(),
     time: "9:36",
-    unread: 0,
+    unread: 9,
     pinned: true,
     online: true,
   },
