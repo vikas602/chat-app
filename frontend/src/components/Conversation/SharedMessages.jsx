@@ -16,7 +16,7 @@ function SharedMessages() {
       setValue(newValue);
     }
     return (
-        <Box sx={{ width: "450px", height: "100vh", maxWidth:"450px" }}>
+        <Box sx={{ width: "300px", height: "100vh" }}>
             <Stack sx={{ height: "100%" }} >
                 <Box sx={{
                     boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",

@@ -3,18 +3,22 @@ import { useTheme, styled, alpha} from "@mui/material/styles"
 import { Button } from '@mui/material';
 import { LuCircleDashed } from "react-icons/lu";
 import { IoMdArchive } from "react-icons/io";
-import React from 'react'
+import React from 'react';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import "./chat.scss";
 import ChatComponent from './chatComponent/ChatComponent';
 import { TbPinnedFilled } from "react-icons/tb";
 import { ChatList } from '../../data';
-import {SimpleBarStyle} from '../../components/Scrollbar'
+import {SimpleBarStyle} from '../../components/Scrollbar';
+
+
 
 
 function Chat() {
   const theme= useTheme();
+
+  
 
   return (
 
@@ -33,6 +37,7 @@ function Chat() {
             <FaMagnifyingGlass className='searchIcon' />
             <input type='text' className='searchInput' placeholder='Search...' style={{backgroundColor: theme.palette.mode=='light'? "white": theme.palette.background.default}} />
           </Box>
+    
         </Stack>
         <Stack spacing={1.5} sx={{height: "80%" }}>
           <Stack direction={'row'} alignItems={'center'} spacing={1.5} >
@@ -44,7 +49,7 @@ function Chat() {
               <Stack spacing={2}>
                 <Stack direction={'row'} alignItems={'center'} spacing={1.2}>
                   <TbPinnedFilled />
-                  <Typography variant={'subtitle2'} color='purple'>Pinned</Typography>
+                  <Typography variant={'subtitle2'}>Pinned</Typography>
                 </Stack>
                 {ChatList.filter((el) => el.pinned).map((el) => {
                   return <ChatComponent {...el} />
@@ -53,7 +58,7 @@ function Chat() {
               </Stack>
               <Stack spacing={2}>
 
-                <Typography variant={'subtitle2'} color='purple'>All Chats</Typography>
+                <Typography variant={'subtitle2'} >All Chats</Typography>
                 {ChatList.filter((el) => !el.pinned).map((el) => {
                   return <ChatComponent {...el} />
                 })}

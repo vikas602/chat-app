@@ -1,7 +1,6 @@
 import { Divider, Stack, Typography, Box, Link, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { DotsThreeVertical, Download, DownloadSimple, Image } from 'phosphor-react';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import React from 'react';
@@ -47,7 +46,7 @@ const LinkMsg = ({ el }) => {
             }}>
             <Stack spacing={2}>
                 <Stack spacing={2}>
-                    <img src={el.preview} alt={el.message} style={{ maxHeight: 210, borderRadius: "10px" }} />
+                    <img src={el.preview} alt={el.message} style={{ width:"auto", maxHeight: 210, borderRadius: "10px" }} />
                     <Stack spacing={1}>
                         <Typography variant='subtitle2'>hello this is the link</Typography>
                         <Typography variant='subtitle2' component={Link} sx={{ color: theme.palette.primary.main }} to="//https://www.youtube.com">www.youtube.com</Typography>
