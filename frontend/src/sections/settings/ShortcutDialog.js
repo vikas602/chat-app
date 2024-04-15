@@ -41,12 +41,12 @@ function ShortcutDialog({open, handleClose}) {
               <Stack 
                sx={{width:"100%"}}
                direction={'row'}
-               spacing={3}
+               spacing={2}
                justifyContent="Space-between"
                alignItems={'center'}>
                 <Typography variant='caption' sx={{fontSize:"14px"}}>{title}</Typography>
                 <Stack  spacing={2} direction={'row'} >{shortcut.map((el)=><>
-                <Box sx={{color:"#212121", fontSize:'10px', backgroundColor:'aliceblue', borderRadius:"7px"}} py={'6px'} px={'12px'}>{el}</Box>
+                <Box sx={{color:"#212121", fontSize:'10px', backgroundColor:'aliceblue', fontWeight:'500', borderRadius:"7px"}} py={'6px'} px={'12px'}>{el}</Box>
                 </>)}</Stack>
 
               </Stack>

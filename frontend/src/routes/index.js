@@ -1,6 +1,7 @@
 import { Suspense, lazy} from 'react';
 import {Navigate, useRoutes} from 'react-router-dom';
 import DashboardLayout from '../layouts/dashboard';
+import Mainlayout from '../layouts/main'
 
 
 import React from 'react';
@@ -20,6 +21,13 @@ const Loadable= (Component)=>(props)=>{
 
 export default function Router() {
   return useRoutes([
+    {
+      path:'/auth',
+      element: <Mainlayout />,
+      children: [
+        {element:<LoginPage />, path:'login'}
+      ]
+    },
    {
     path:"/",
     element: <DashboardLayout />,
@@ -43,5 +51,6 @@ const Setting = Loadable(
   lazy(() => import("../pages/dashboard/Setting")),
 );
 const Page404 = Loadable(lazy(() => import("../pages/page404")));
+const LoginPage = Loadable(lazy(()=>import("../pages/auth/LoginPage")))
 
 

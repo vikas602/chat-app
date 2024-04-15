@@ -11,6 +11,7 @@ const DocMsg = ({ el }) => {
     return <Stack direction={'row'} justifyContent={el.incoming ? "start" : "end"}>
         <Box
             p={1}
+        
             sx={{
                 backgroundColor: el.incoming ? theme.palette.background.default :
                     theme.palette.primary.main,

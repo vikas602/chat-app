@@ -1,29 +1,34 @@
 import React from 'react';
-import { Dialog, DialogTitle, Button, Radio, FormControl,
-     DialogContent, RadioGroup, DialogContentText, 
-     FormControlLabel, DialogActions  } from '@mui/material';
+import {
+    Dialog, DialogTitle, Button, Radio, FormControl,
+    DialogContent, RadioGroup, DialogContentText,
+    FormControlLabel, DialogActions
+} from '@mui/material';
 import Slide from '@mui/material/Slide';
+import { Stack } from '@mui/material';
+import useSettings from '../../hooks/useSettings';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function ThemeDialog({ open, handleClose }) {
+    const {onToggleMode} = useSettings();
     return (
         <>
-            <Button variant="outlined" onClick={open}>
-                Slide in alert dialog
-            </Button>
+
             <Dialog
                 open={open}
                 TransitionComponent={Transition}
                 keepMounted
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
+                sx={{width:'100%'}}
+                
             >
-                <DialogTitle>{"Select Theme"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
+                <DialogTitle sx={{mb:3}}>{"Select Theme"}</DialogTitle>
+                <DialogContent sx={{pb: "10px"}}>
+                
                         <FormControl>
                             <RadioGroup
                                 row
@@ -31,15 +36,16 @@ function ThemeDialog({ open, handleClose }) {
                                 name="position"
                                 defaultValue="top"
                             >
-
-                                <FormControlLabel value="Light" control={<Radio />} label="End" />
-                                <FormControlLabel value="Dark" control={<Radio />} label="End" />
-                                <FormControlLabel value="Default" control={<Radio />} label="End" />
+                                <Stack direction={'column'}>
+                                    <FormControlLabel value="Light"  control={<Radio />} label="Light"  />
+                                    <FormControlLabel value="Dark"  control={<Radio />} label="Dark" />
+                                    <FormControlLabel value="Default" control={<Radio />} label="Default" />
+                                </Stack>
                             </RadioGroup>
                         </FormControl>
-                    </DialogContentText>
+                    
                 </DialogContent>
-                <DialogActions>
+                <DialogActions sx={{pt:"0px !important", mt:"0px !important", ml:'210px'}} >
                     <Button onClick={handleClose}>Cancel</Button>
                     <Button onClick={handleClose}>Select</Button>
                 </DialogActions>
