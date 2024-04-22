@@ -7,7 +7,7 @@ import {IconButton, Stack, Divider} from '@mui/material'
 function AuthSocial() {
   return (
     <>
-    <Divider sx={{my:2.5, typography:'overline'}}>OR</Divider>
+    <Divider sx={{my:2.5, typography:'overline', color:'black'}}>OR</Divider>
     <Stack direction={'row'} spacing={2}>
         <IconButton><FcGoogle /></IconButton>
         <IconButton><FaSquareXTwitter style={{color:'black'}} /></IconButton>

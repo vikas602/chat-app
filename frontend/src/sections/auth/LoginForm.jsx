@@ -2,14 +2,15 @@ import * as React from 'react';
 import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import {Stack, Button} from "@mui/material";
-import { useFormik } from 'formik';
+import {useFormik} from 'formik'
 
-const LoginSchema = Yup.object({
-  email: Yup.string().required("Email is requried"),
-  password: Yup.string().required("Password is requried")
-});
+
 
 function LoginForm() {
+  const LoginSchema = Yup.object({
+    email: Yup.string().required("Email is requried"),
+    password: Yup.string().required("Password is requried")
+  });
   const formik = useFormik({
     initialValues:{
       email: '',
@@ -17,7 +18,7 @@ function LoginForm() {
     },
     validationSchema: LoginSchema,
     onSubmit: (values)=>{
-      console.log(JSON.stringify(values, null, 2))
+      console.log(JSON.stringify(values))
     }
   })
  
