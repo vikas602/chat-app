@@ -1,7 +1,8 @@
 import { Suspense, lazy} from 'react';
 import {Navigate, useRoutes} from 'react-router-dom';
 import DashboardLayout from '../layouts/dashboard';
-import Mainlayout from '../layouts/main'
+import Mainlayout from '../layouts/main';
+import Layout from '../pages/auth/Layout';
 
 
 import React from 'react';
@@ -23,9 +24,10 @@ export default function Router() {
   return useRoutes([
     {
       path:'/auth',
-      element: <Mainlayout />,
+      element: <Layout />,
       children: [
-        {element:<LoginPage />, path:'login'}
+        {element:<LoginPage />, path:'login'},
+        {element:<SignUpPage />, path:'SignUpPage'}
       ]
     },
    {
@@ -51,6 +53,8 @@ const Setting = Loadable(
   lazy(() => import("../pages/dashboard/Setting")),
 );
 const Page404 = Loadable(lazy(() => import("../pages/page404")));
-const LoginPage = Loadable(lazy(()=>import("../pages/auth/LoginPage")))
+
+const LoginPage = Loadable(lazy(()=>import("../pages/auth/LoginPage/LoginPage")));
+const SignUpPage = Loadable(lazy(()=>import("../pages/auth/SignupPage/SignupPage")))
 
 
