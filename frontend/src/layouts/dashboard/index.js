@@ -1,4 +1,4 @@
-import { Box, Divider, Stack, Switch } from "@mui/material";
+import { Box, Divider, Stack, Switch, IconButton } from "@mui/material";
 import { useTheme, styled } from "@mui/material/styles";
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
@@ -9,6 +9,8 @@ import { IoCall } from "react-icons/io5";
 import "../dashboard/dashboard.scss"
 import useSettings from '../../hooks/useSettings';
 import { IoChatbox } from "react-icons/io5";
+import { MdNightsStay } from "react-icons/md";
+import { BsFillSunFill } from "react-icons/bs";
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 40,
   height: 20,
@@ -94,8 +96,8 @@ const DashboardLayout = () => {
                 </div>
               </Stack>
             </Stack >
-            <Stack sx={{ width: "100%" }} alignItems="center" >
-              change mode
+            <Stack sx={{ width: "100%" }} alignItems="center" spacing={2} >
+              { theme.palette.mode=='light'? <IconButton> <BsFillSunFill style={{color: 'orange', fontSize:'25px'}} onClick={()=>{onToggleMode()}}/></IconButton>: <IconButton> <MdNightsStay style={{color: 'white', fontSize:'25px' }} onClick={()=>{onToggleMode()}}/> </IconButton>}
               <AntSwitch className="switch" onChange={() => { onToggleMode(); }} defaultChecked />
             </Stack>
           </Stack>

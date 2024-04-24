@@ -1,12 +1,13 @@
-import * as React from 'react';
+
+import React from 'react'
 import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
-import {Stack, Button, Link} from "@mui/material";
+import {Stack, Button, Link , Box, Typography} from "@mui/material";
 import {useFormik} from 'formik'
+import { useTheme} from '@mui/material/styles'
 
-
-
-function LoginForm() {
+function ForgetPasword() {
+  const theme= useTheme();
   const LoginSchema = Yup.object({
     email: Yup.string().required("Email is requried"),
     password: Yup.string().required("Password is requried")
@@ -21,11 +22,14 @@ function LoginForm() {
       console.log(JSON.stringify(values))
     }
   })
- 
 
   return (
-    <form  onSubmit={formik.handleSubmit} >
-      <Stack spacing={4} my={4}>
+    <Box sx={{ boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px", 
+    borderRadius: '20px', width: '32%', padding: '30px',
+     backgroundColor: theme.palette.mode== "light"? "#fff": 'black'  }}>
+      <Typography variant='subtitle2'>Please enter your registered mail id below</Typography>
+      <form  onSubmit={formik.handleSubmit} >
+      <Stack spacing={4} my={4} direction={'row'}>
         <TextField
           fullWidth
           required
@@ -38,31 +42,15 @@ function LoginForm() {
           error={formik.touched && Boolean(formik.errors.email)}
           helperText= {formik.touched.email && formik.errors.email}
         />
-       <Stack spacing={1}>
-        <TextField
-          fullWidth
-          required
-          id="password"
-          label="Password"
-          type='password'
-          name='password'
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched && Boolean(formik.errors.password)}
-          helperText= {formik.touched.password && formik.errors.password}
-        />
-        <Link href="/auth/forget-password">Forget Password ??</Link>
-        </Stack>
-
-        <Button variant='contained' type="submit" >Login</Button>
+        <Button variant='contained' sx={{height:'54px'}}>Submit</Button>
 
        
       </Stack>
 
     </form>
 
+    </Box>
   )
 }
 
-export default LoginForm
+export default ForgetPasword

@@ -4,7 +4,7 @@ import { Container, Stack } from "@mui/material";
 
 const MainLayout = () => {
   return (
-    <>,
+    <>
       <Container >
 
         <Stack alignItems={'center'} justifyContent={'center'} sx={{height:'90vh'}}>

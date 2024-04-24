@@ -9,6 +9,7 @@ import React from 'react';
 
 import {DEFAULT_PATH} from "../config";
 import LoadingScreen from '../components/LoadingScreen';
+import ForgetPasword from '../pages/auth/ForgetPassword/ForgetPasword';
 
 
 const Loadable= (Component)=>(props)=>{
@@ -27,7 +28,8 @@ export default function Router() {
       element: <Layout />,
       children: [
         {element:<LoginPage />, path:'login'},
-        {element:<SignUpPage />, path:'SignUpPage'}
+        {element:<SignUpPage />, path:'signup'},
+        {element:<ForgetPasword/>, path:'forget-password'}
       ]
     },
    {
@@ -55,6 +57,7 @@ const Setting = Loadable(
 const Page404 = Loadable(lazy(() => import("../pages/page404")));
 
 const LoginPage = Loadable(lazy(()=>import("../pages/auth/LoginPage/LoginPage")));
-const SignUpPage = Loadable(lazy(()=>import("../pages/auth/SignupPage/SignupPage")))
+const SignUpPage = Loadable(lazy(()=>import("../pages/auth/SignupPage/SignupPage")));
+const ForgetPassword = Loadable(lazy(()=>import("../pages/auth/ForgetPassword/ForgetPasword")))
 
 
