@@ -1,12 +1,12 @@
-import React from 'react'
-import Chat from './Chat'
-import { Box, Stack } from '@mui/material'
+import React from 'react';
+import Chat from './Chat';
+import { Box, Stack } from '@mui/material';
 import { useTheme} from '@mui/material/styles'
-import Conversation from '../../components/Conversation'
-import Contact from '../../components/Conversation/Contact'
-import {useSelector} from 'react-redux'
-import SharedMessages from '../../components/Conversation/SharedMessages'
-import StaredMessage from '../../components/Conversation/StaredMessage'
+import Conversation from '../../components/Conversation';
+import Contact from '../../components/Conversation/Contact';
+import {useSelector} from 'react-redux';
+import SharedMessages from '../../components/Conversation/SharedMessages';
+import StaredMessage from '../../components/Conversation/StaredMessage';
 
 function Generalapp() {
   const theme = useTheme()

@@ -22,9 +22,9 @@ function Layout() {
                     <Stack direction={'row'} spacing={3} alignItems={'center'}> 
                     
                     { theme.palette.mode=='light'? <IconButton> <BsFillSunFill style={{color: 'white', fontSize:'25px'}} onClick={()=>{onToggleMode()}}/></IconButton>: <IconButton> <MdNightsStay style={{color: 'white', fontSize:'25px' }} onClick={()=>{onToggleMode()}}/> </IconButton>}
-                    <Link sx={{color:'white', fontSize:'20px'}}>About Us</Link>
-                    <Link sx={{color:'white', fontSize:'20px'}}>Feedback</Link>
-                    <Link sx={{color:'white', fontSize:'20px'}}>Career</Link>
+                    <Link sx={{color:'white', fontSize:'16px'}}>About Us</Link>
+                    <Link sx={{color:'white', fontSize:'16px'}}>Feedback</Link>
+                    <Link sx={{color:'white', fontSize:'16px'}}>Career</Link>
                     </Stack>
                 </Stack>
             </Box>

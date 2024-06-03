@@ -269,6 +269,111 @@ const ChatList = [
   },
 ];
 
+const CallUsersList=[
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false,
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false,
+  },
+
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true,
+  },
+
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false,
+  },
+
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true,
+  },
+
+  {
+    id: 5,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true,
+  },
+  {
+    id: 6,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false,
+  },
+
+
+]
+
+const CallLog= [
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    time: "08:15",
+    unread: 0,
+    missed: true,
+    incoming: true,
+    online: false,
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    time: "08:12",
+    unread: 0,
+    missed: true,
+    incoming: false,
+    online: true,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    time: "08:10",
+    unread: 0,
+    missed: true,
+    incoming: true,
+    online: false,
+  },
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    time: "08:21",
+    unread: 0,
+    missed: false,
+    incoming: true,
+    online: false,
+  },
+  {
+    id: 5,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    time: "09:42",
+    unread: 0,
+    missed: true,
+    incoming: true,
+    online: false,
+  },
+  
+]
+
 const Chat_History = [
   {
     type: "msg",
@@ -463,5 +568,7 @@ export {
   Message_options,
   Docs,
   Links,
-  shortcutList
+  shortcutList,
+  CallLog,
+  CallUsersList
 };
