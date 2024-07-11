@@ -1,7 +1,7 @@
 import { Box, Divider, Stack, Switch, IconButton } from "@mui/material";
 import { useTheme, styled } from "@mui/material/styles";
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import {  Outlet, useNavigate } from "react-router-dom";
 import { AiFillMessage } from "react-icons/ai";
 import { RiGroupFill } from "react-icons/ri";
 import { IoIosSettings } from "react-icons/io";
@@ -57,7 +57,7 @@ const DashboardLayout = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
-
+  const navigate =useNavigate();
 
 
   return (
@@ -81,17 +81,17 @@ const DashboardLayout = () => {
                 borderRadius: 1.5
               }}><IoChatbox className="mainIcon" /></Box>
               <Stack spacing={3} sx={{ widht: "max-content" }} direction="column" alignItems="center">
-                <div onClick={() => { setSelected(0) }} className={selected == 0 ? "activeIcon" : "icon"}>
+                <div onClick={() => { setSelected(0); navigate('./') }} className={selected == 0 ? "activeIcon" : "icon"}>
                   <AiFillMessage />
                 </div>
-                <div onClick={() => { setSelected(1) }} className={selected == 1 ? "activeIcon" : "icon"}>
+                <div onClick={() => { setSelected(1); navigate('./group') }} className={selected == 1 ? "activeIcon" : "icon"}>
                   <RiGroupFill />
                 </div>
-                <div onClick={() => { setSelected(2) }} className={selected == 2 ? "activeIcon" : "icon"}>
+                <div onClick={() => { setSelected(2); navigate('./call')}} className={selected == 2 ? "activeIcon" : "icon"}>
                   <IoCall />
                 </div>
                 <Divider sx={{ width: "48px" }} />
-                <div onClick={() => { setSelected(3) }} className={selected == 3 ? "activeIcon" : "icon"}>
+                <div onClick={() => { setSelected(3); navigate("./settings") }} className={selected == 3 ? "activeIcon" : "icon"}>
                   <IoIosSettings />
                 </div>
               </Stack>

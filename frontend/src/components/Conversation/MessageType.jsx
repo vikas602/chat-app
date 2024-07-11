@@ -3,17 +3,26 @@ import { useTheme } from '@mui/material/styles';
 import { DotsThreeVertical, Download, DownloadSimple, Image } from 'phosphor-react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Message_options} from '../../data';
 
 const DocMsg = ({ el }) => {
     const theme = useTheme();
+    const [incomingColor, setIncomingColor]= useState("");
+    useEffect(()=>{
+        if(theme.palette.mode=="dark"){
+            setIncomingColor("black")
+        }
+        else{
+            setIncomingColor("white")
+        }
+    },[theme.palette.mode]);
     return <Stack direction={'row'} justifyContent={el.incoming ? "start" : "end"}>
         <Box
             p={1}
         
             sx={{
-                backgroundColor: el.incoming ? theme.palette.background.default :
+                backgroundColor: el.incoming ? incomingColor :
                     theme.palette.primary.main,
                 borderRadius: 1.5,
                 boxShadow: "0px 10px 15px -6px rgba(0,0,0,0.1)",
@@ -35,11 +44,20 @@ const DocMsg = ({ el }) => {
 }
 const LinkMsg = ({ el }) => {
     const theme = useTheme();
+    const [incomingColor, setIncomingColor]= useState("");
+    useEffect(()=>{
+        if(theme.palette.mode=="dark"){
+            setIncomingColor("black")
+        }
+        else{
+            setIncomingColor("white")
+        }
+    },[theme.palette.mode]);
     return <Stack direction={'row'} justifyContent={el.incoming ? "start" : "end"}>
         <Box
             p={1}
             sx={{
-                backgroundColor: el.incoming ? theme.palette.background.default :
+                backgroundColor: el.incoming ? incomingColor :
                     theme.palette.primary.main,
                 borderRadius: 1.5,
                 boxShadow: "0px 10px 15px -6px rgba(0,0,0,0.1)",
@@ -61,10 +79,19 @@ const LinkMsg = ({ el }) => {
 }
 const ReplyMsg = ({ el }) => {
     const theme = useTheme();
+    const [incomingColor, setIncomingColor]= useState("");
+    useEffect(()=>{
+        if(theme.palette.mode=="dark"){
+            setIncomingColor("black")
+        }
+        else{
+            setIncomingColor("white")
+        }
+    },[theme.palette.mode]);
     return <Stack direction={'row'} justifyContent={el.incoming ? "start" : "end"}>
         <Box
             sx={{
-                backgroundColor: el.incoming ? theme.palette.background.default :
+                backgroundColor: el.incoming ? incomingColor:
                     theme.palette.primary.main,
                 borderRadius: 1.5,
                 boxShadow: "0px 10px 15px -6px rgba(0,0,0,0.1)",
@@ -90,11 +117,20 @@ const ReplyMsg = ({ el }) => {
 }
 const MediaMsg = ({ el }) => {
     const theme = useTheme();
+    const [incomingColor, setIncomingColor]= useState("");
+    useEffect(()=>{
+        if(theme.palette.mode=="dark"){
+            setIncomingColor("black")
+        }
+        else{
+            setIncomingColor("white")
+        }
+    },[theme.palette.mode]);
     return <Stack direction={'row'} justifyContent={el.incoming ? "start" : "end"}>
         <Box
             p={1}
             sx={{
-                backgroundColor: el.incoming ? theme.palette.background.default :
+                backgroundColor: el.incoming ? incomingColor :
                     theme.palette.primary.main,
                 borderRadius: 1.5,
                 boxShadow: "0px 10px 15px -6px rgba(0,0,0,0.1)",
@@ -113,11 +149,21 @@ const MediaMsg = ({ el }) => {
 
 const TextMsg = ({ el }) => {
     const theme = useTheme();
+    const [incomingColor, setIncomingColor]= useState("");
+    useEffect(()=>{
+        if(theme.palette.mode=="dark"){
+            setIncomingColor("black")
+        }
+        else{
+            setIncomingColor("white")
+        }
+    },[theme.palette.mode]);
+    
     return <Stack direction={'row'} justifyContent={el.incoming ? "start" : "end"}>
         <Box
             p={1}
             sx={{
-                backgroundColor: el.incoming ? theme.palette.background.default :
+                backgroundColor: el.incoming ? incomingColor :
                     theme.palette.primary.main,
                 borderRadius: 1.5,
                 boxShadow: "0px 10px 15px -6px rgba(0,0,0,0.1)",
@@ -132,6 +178,7 @@ const TextMsg = ({ el }) => {
 }
 const Timeline = ({ el }) => {
     const theme = useTheme();
+    
     return <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Divider width="46%" />
         <Typography variant='caption' sx={{ color: theme.palette.text }}>{el.text}</Typography>
