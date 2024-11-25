@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const helmet = require('helmet');
 const mongosanitize = require('express-mongo-sanitize');
+const routes = require("./routes/index")
 const bodyParser = require('body-parser');
 const xss = require('xss');
 const app = express();
@@ -29,6 +30,7 @@ const limiter = rateLimit({
     message: "Too many request from this IP, Please try again after 1 hour"
 })
 app.use("/chat", limiter);
+app.use("/", routes)
 
 // app.use(xss());
 

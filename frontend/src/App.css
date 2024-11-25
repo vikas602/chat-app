@@ -47,12 +47,14 @@ p{
   background: #555;
   opacity: 0.3;
   border-radius: 10px;
+  visibility: hidden;
 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #7c7c7c; 
+  visibility: visible;
 }
 @keyframes App-logo-spin {
   from {

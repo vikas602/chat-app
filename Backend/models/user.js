@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const bycrypt = require('bycrypt')
+const bycrypt = require('bcryptjs');
+const crypto = require("crypto")
 const userSchema = new mongoose.Schema({
     firstName:{
         type:"string",
@@ -43,11 +44,44 @@ const userSchema = new mongoose.Schema({
     
 });
 userSchema.pre("save", async function(next){
-    this.otp = await bycrypt
-})
+    if(!this.isMOdified("otp")) return next();
+
+    this.otp = await bycrypt.hash(this.otp,12);
+    next();
+});
+
+userSchema.pre("save", async function(next){
+    if(!this.isMOdified("password")) return next();
+
+    this.password = await bycrypt.hash(this.password,12);
+    next();
+});
+
+
+userSchema.methods.correctOTP = async function(candidateOTP, userOTP){
+    return await bycrypt.compare(candidateOTP, userOTP);
+}
 userSchema.methods.correctPassword = async function (Inputpassword, userPassword){
     return await bycrypt.compare(Inputpassword, userPassword)
 
 }
+
+userSchema.methods.changedPasswordAfter= function(timestamp){
+    return timestamp < this.passwordChangedAt
+
+}
+userSchema.methods.createPasswordResetToken = function () {
+    const resetToken = crypto.randomBytes(32).toString("hex");
+  
+    this.passwordResetToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+  
+    this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  
+    return resetToken;
+  };
+
 const Users = new mongoose.model("User", userSchema);
 module.exports = Users;

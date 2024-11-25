@@ -111,9 +111,7 @@ const Footer = () => {
                     <FaRegSmile style={{ color: openPicker ? theme.palette.primary.main : ' #919EAB' }} />
                   </IconButton>
                 </InputAdornment>
-              )
-
-            }} />
+              ) }} />
         </Stack>
         <Box sx={{ height: "45px", width: "45px", backgroundColor: theme.palette.primary.main, borderRadius: "10px" }} boxShadow={'0px 10px 15px -6px rgba(0,0,0,0.1)'}>
           <Stack alignItems={'center'} sx={{ width: '100%', height: '100%' }} justifyContent={'center'}>

@@ -3,14 +3,16 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const filterObj = require('../utils/filterObj');
 const otpGenerator = require('otp-generator');
-
+const promisify = require("util")
 const signToken=(userId)=> jwt.sign({userId}, process.env.JWT_SECRET_KEY);
+const mailService = require("../services/mailer");
+const crypto = require("crypto");
 
 //Signup controller
 exports.register = async(req, res, next)=>{
     const {firstName, lastName, email, password, gender}= req.body;
     const filteredBody = filterObj(req.body, "firstName", "lastName", "email", "password", "gender");
-    const user = User.findOne({email:email});''
+    const user = User.findOne({email:email});
     if(user && user.verified){
 
         res.status(400).json({
@@ -43,6 +45,18 @@ exports.sendOTP = async (req, res, next)=>{
         otp:new_otp,
         otp_expiry_time,
     });
+    mailService.sendEmail({
+        from: "vikassharm32275@gmail.com",
+        to: "vikassharma32275@gmail.com",
+        subject: "OTP for chat login",
+        text: `Your OTP is ${otp}. This is valid for 10 min`
+    }
+    )
+    res.status(200).json({
+        status: "Successfull",
+        message: "OTP sent successfully"
+    })
+    
     
 
 }
@@ -57,6 +71,23 @@ exports.verifyOTP = async(req, res, next)=>{
             message: "Email is invalid or OTP is expired"
         })
     }
+    if(!await user.correctOTP(otp, user.otp)){
+        res.status(400).json({
+            status: "error",
+            message: "OTP is not valid"
+        })
+    }
+    user.verified = true;
+    user.otp = undefined;
+
+    await user.save({new:true, validateModifiedOnly: true});
+    const token = signToken(user._id);
+    res.status(200).json({
+        status: "Sucessfull",
+        message:"OTP verified",
+        token
+    });
+     
 
 }
 
@@ -89,18 +120,20 @@ exports.forgetPassword = async(req, res, next)=>{
     const{email} = req.body;
     const user = User.findOne({email: email});
     if(!user){
-        res.status(400).json({
+        return res.status(400).json({
             status: "error",
             message: "Sorry your email is not registered"
         });
+        
     }
+    
 
 
     //Generate Reset token
-    const resetToken = user.createPasswordToken();
-    const resetURL = `https://chats.com/reset-password/code=${resetToken}`;
+    // const resetToken = user.createPasswordToken();
+    // const resetURL = `https://chats.com/reset-password/code=${resetToken}`;
     try{
-        res.status(200).json({
+        return res.status(200).json({
             status: "success",
             message: "Rest password link sent to email"
         });
@@ -109,11 +142,51 @@ exports.forgetPassword = async(req, res, next)=>{
         user.passwordRestToken = undefined;
         user.passwordRestExpires = undefined;
         await user.save({validateBeforeSave: false});
-        res.status(500).json({
+        return res.status(500).json({
             status: error,
             message: "There was an error sending email"
         });
     }
+}
+
+exports.protect= async(req, res, next)=>{ 
+    let token;
+    if(req.headers.authrization && req.headers.authrization.startsWith("Bearrer")){
+        token = req.headers.authrization.split(" ")[1];
+
+    }
+    else if(req.cookie.jwt){
+        token = req.cookie.jwt;
+
+    }
+    else{
+        req.status(400).json({
+            status: "error",
+            message: "You are not logged In"
+        })
+        return;
+    }
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET_KEY);
+    const this_user  = await User.findById(decoded.userId);
+
+    if(!this_user){
+        res.status(400).json({
+            status: "error",
+            message: "User dosen't exist"
+        })
+    }
+
+    //check the user changed passowrd
+    if(this_user.changedPasswordAfter(decoded.iat)){
+        res.status(400).json({
+            status: "error",
+            message: "User might changed the password. Please login again"
+        })
+    }
+   req.user = this_user;
+   next(); 
+
+
 }
 
 exports.resetPassword = async (req, res, next)=>{
@@ -126,7 +199,8 @@ exports.resetPassword = async (req, res, next)=>{
         res.status(400).json({
             status: "error",
             message: "Token is expired or invalid"
-        })
+        });
+        return;
     }
     // update user
     user.password= req.body.password;
@@ -139,7 +213,7 @@ exports.resetPassword = async (req, res, next)=>{
     const token = signToken(user._id);
     res.status(200).json({
         status: "Sucessfull",
-        message:"Logged in sucessfully",
+        message:"Password Reseted Sucessfully",
         token
     });
      
